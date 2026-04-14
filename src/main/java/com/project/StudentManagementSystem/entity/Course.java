@@ -1,9 +1,19 @@
 package com.project.StudentManagementSystem.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
+
+@Entity
+@Table(name = "course")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Course {
 
     @Id
@@ -14,6 +24,6 @@ public class Course {
 
     private Integer duration;
 
-
-
+    @ManyToMany(mappedBy = "courses")
+    private List<Student> students;
 }

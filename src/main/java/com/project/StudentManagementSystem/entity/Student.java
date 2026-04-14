@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="student")
@@ -48,4 +49,12 @@ public class Student {
     public void onUpdate(){
         this.updatedAt = LocalDateTime.now();
     }
+
+    @ManyToMany
+    @JoinTable(
+            name = "student_courses",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private List<Course> courses;
 }
